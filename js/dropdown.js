@@ -16,7 +16,8 @@
       gutter: 0, // Spacing from edge
       belowOrigin: false,
       alignment: 'left',
-      stopPropagation: false
+      stopPropagation: false,
+      scrollParent: null
     };
 
     // Open dropdown.
@@ -112,7 +113,12 @@
         // Check for scrolling positioned container.
         var scrollYOffset = 0;
         var scrollXOffset = 0;
-        var wrapper = origin.parent();
+        var wrapper = null;
+        if(curr_options.scrollParent) {
+          wrapper = curr_options.scrollParent;
+        } else {
+          wrapper = origin.parent();
+        }
         if (!wrapper.is('body')) {
           if (wrapper[0].scrollHeight > wrapper[0].clientHeight) {
             scrollYOffset = wrapper[0].scrollTop;
